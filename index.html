@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CV Noir et Blanc - Solid</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            background: #000;
+            color: #fff;
+        }
+        
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 50px auto;
+            background: #111;
+            padding: 30px 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+        
+        .container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        h1,
+        h2 {
+            margin: 0 0 15px 0;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        h2 {
+            border-bottom: 1px solid #fff;
+            padding-bottom: 5px;
+        }
+        
+        p,
+        li {
+            margin: 5px 0;
+        }
+        
+        .profile-img {
+            width: 220px;
+            height: 270px;
+            display: block;
+            margin: 0 auto 20px auto;
+            border: 2px solid #fff;
+            object-fit: cover;
+        }
+        /* Skills cards */
+        
+        .skills-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .skill-card {
+            width: 80px;
+            height: 80px;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: skillFadeIn 0.6s forwards;
+        }
+        
+        .skill-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        
+        .skill-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        
+        .skill-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        
+        .skill-card:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+        
+        .skill-card:nth-child(5) {
+            animation-delay: 1s;
+        }
+        
+        .skill-card:nth-child(6) {
+            animation-delay: 1.2s;
+        }
+        
+        .skill-card:nth-child(7) {
+            animation-delay: 1.4s;
+        }
+        
+        @keyframes skillFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Contact logos */
+        
+        .contact-logos {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-logos a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 60px;
+            background: #111;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .contact-logos a:hover {
+            transform: scale(1.1);
+        }
+        
+        .contact-logos img {
+            width: 40px;
+            height: 40px;
+        }
+        /* Education cards */
+        
+        .education-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .edu-card {
+            width: 200px;
+            background: #111;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: eduFadeIn 0.6s forwards;
+        }
+        
+        .edu-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        @keyframes eduFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .edu-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        
+        .edu-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        
+        .edu-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        
+        .skill-card {
+            width: 80px;
+            height: 80px;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            animation: skillFadeIn 0.6s forwards;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        /* Animation عند hover */
+        
+        .skill-card:hover {
+            transform: scale(1.2) rotate(5deg);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+        /* Animation ديال الدخول */
+        
+        @keyframes skillFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .experience {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            background: #111;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .experience:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        /* الصورة */
+        
+        .exp-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 2px solid #fff;
+            transition: transform 0.4s;
+        }
+        /* animation ديال الصورة */
+        
+        .experience:hover .exp-img {
+            transform: scale(1.2) rotate(5deg);
+        }
+        /* النص */
+        
+        .exp-content {
+            flex: 1;
+        }
+        /* Education Vertical Style */
+        
+        .education-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        /* Box */
+        
+        .edu-box {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #111;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInEdu 0.6s forwards;
+        }
+        /* Delay animation */
+        
+        .edu-box:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        
+        .edu-box:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        
+        .edu-box:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        /* Hover animation */
+        
+        .edu-box:hover {
+            transform: translateX(0) scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        /* Logo */
+        
+        .edu-logo {
+            width: 70px;
+            height: 70px;
+            transition: transform 0.4s;
+        }
+        
+        .edu-box:hover .edu-logo {
+            transform: rotate(10deg) scale(1.2);
+        }
+        /* Text */
+        
+        .edu-text h3 {
+            margin: 0;
+        }
+        
+        .edu-text p {
+            margin: 5px 0 0 0;
+        }
+        /* Animation */
+        
+        @keyframes slideInEdu {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="stars"></canvas>
+
+    <div class="container" id="cvContainer">
+        <img src="LHARMACH.jpeg" alt="Photo de profil" class="profile-img">
+        <h1>IMAD LHARMACH | Ingénieur Data</h1>
+
+        <!-- Éducation -->
+        <!-- Éducation -->
+        <div class="section">
+            <h2>🎓 Éducation</h2>
+
+            <div class="education-vertical">
+
+                <div class="edu-box">
+                    <img src="https://img.icons8.com/color/96/graduation-cap.png" class="edu-logo">
+                    <div class="edu-text">
+                        <h3>2024 | Baccalauréat</h3>
+                        <p>Mention A. Bien - École Les Prince</p>
+                    </div>
+                </div>
+
+                <div class="edu-box">
+                    <img src="https://img.icons8.com/color/96/student-center.png" class="edu-logo">
+                    <div class="edu-text">
+                        <h3>2027 | Diplôme OFPPT</h3>
+                        <p>Développement Digital</p>
+                    </div>
+                </div>
+
+                <div class="edu-box">
+                    <img src="https://img.icons8.com/color/96/data-configuration.png" class="edu-logo">
+                    <div class="edu-text">
+                        <h3>2030 | Ingénieur Data</h3>
+                        <p>EMSI - Casablanca</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Expériences -->
+        <!-- Expériences Professionnelles -->
+        <div class="section">
+            <h2>💼 Expériences Professionnelles</h2>
+
+            <div class="experience">
+                <img src="https://img.icons8.com/color/100/company.png" class="exp-img">
+
+                <div class="exp-content">
+                    <h3>2025 | Stage Développeur Web</h3>
+                    <p><strong>Entreprise :</strong> Charika Développement Digital</p>
+                    <ul>
+                        <li>Création d’un site web dynamique</li>
+                        <li>Développement avec PHP</li>
+                        <li>Optimisation du site</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience">
+                <img src="https://img.icons8.com/color/100/data-configuration.png" class="exp-img">
+
+                <div class="exp-content">
+                    <h3>2026 | Stage Data Analyst</h3>
+                    <p><strong>Entreprise :</strong> XYZ Data</p>
+                    <ul>
+                        <li>Analyse de données avec Python</li>
+                        <li>Création dashboards</li>
+                        <li>Traitement des données</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Compétences -->
+        <!-- Compétences -->
+        <div class="section">
+            <h2>🛠️ Compétences</h2>
+
+            <!-- Front-end -->
+            <h3 style="text-align:center; margin-top:20px;">FRONT - END</h3>
+            <div class="skills-cards">
+                <div class="skill-card"><img src="https://img.icons8.com/color/40/000000/html-5.png"></div>
+                <div class="skill-card"><img src="https://img.icons8.com/color/40/000000/css3.png"></div>
+                <div class="skill-card"><img src="https://img.icons8.com/color/40/000000/javascript.png"></div>
+            </div>
+
+            <!-- Back-end -->
+            <h3 style="text-align:center; margin-top:30px;">BACK - END</h3>
+            <div class="skills-cards">
+                <div class="skill-card"><img src="https://img.icons8.com/color/40/000000/python.png"></div>
+                <div class="skill-card"><img src="https://img.icons8.com/color/40/000000/php.png"></div>
+                <div class="skill-card"><img src="https://img.icons8.com/color/40/000000/c-sharp-logo.png"></div>
+                <div class="skill-card"><img src="https://img.icons8.com/color/40/000000/c-plus-plus-logo.png"></div>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="section">
+            <h2>🌐 Contact</h2>
+            <div class="contact-logos">
+                <a href="mailto:imadlharmach99@gmail.com" target="_blank"><img src="https://img.icons8.com/color/40/000000/email.png" alt="Email"></a>
+                <a href="tel:+212762056114"><img src="https://img.icons8.com/color/40/000000/phone.png" alt="Téléphone"></a>
+                <a href="https://www.instagram.com/lharmach_/?__pwa=1" target="_blank"><img src="https://img.icons8.com/color/40/000000/instagram-new.png" alt="Instagram"></a>
+                <a href="https://wa.me/212762056114" target="_blank"><img src="https://img.icons8.com/color/40/000000/whatsapp.png" alt="WhatsApp"></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fade-in container
+        window.addEventListener('load', () => {
+            document.getElementById('cvContainer').classList.add('visible');
+        });
+
+        // Étoiles animées
+        const canvas = document.getElementById('stars');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        for (let i = 0; i < 100; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 1.5 + 0.5,
+                dx: (Math.random() - 0.5) * 0.2,
+                dy: (Math.random() - 0.5) * 0.2
+            });
+        }
+
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < stars.length; i++) {
+                for (let j = i + 1; j < stars.length; j++) {
+                    let dx = stars[i].x - stars[j].x;
+                    let dy = stars[i].y - stars[j].y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(stars[i].x, stars[i].y);
+                        ctx.lineTo(stars[j].x, stars[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            for (let s of stars) {
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = 'white';
+                ctx.fill();
+                s.x += s.dx;
+                s.y += s.dy;
+                if (s.x < 0) s.x = canvas.width;
+                if (s.x > canvas.width) s.x = 0;
+                if (s.y < 0) s.y = canvas.height;
+                if (s.y > canvas.height) s.y = 0;
+            }
+            requestAnimationFrame(animateStars);
+        }
+        animateStars();
+
+        // Parallax scroll
+        window.addEventListener('scroll', () => {
+            const scroll = window.scrollY;
+            document.getElementById('cvContainer').style.transform = `translateY(${50 + scroll * 0.2}px)`;
+        });
+    </script>
+
+</body>
+
+</html>
